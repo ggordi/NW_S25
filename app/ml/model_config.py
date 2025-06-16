@@ -4,8 +4,8 @@ import joblib
 import json
 
 # load the trained model
-knn = joblib.load('model.joblib')
-model_data = pd.read_csv("encoded_model.csv")
+knn = joblib.load("/home/runner/workspace/app/ml/model.joblib")
+model_data = pd.read_csv("/home/runner/workspace/app/ml/encoded_model.csv")
 model_data = model_data.set_index('Ticker')
 feature_cols = model_data.columns
 
@@ -31,11 +31,11 @@ def get_recs(user_input):
 
 
 # testing:
-# inp = {
-#     'sector': 'Technology',
-#     'marketCapLevel': 'high',
-#     'growthValueType': 'growth',
-#     'forwardPE': 30
-# }
+inp = {
+    'sector': 'Technology',
+    'marketCapLevel': 'high',
+    'growthValueType': 'growth',
+    'forwardPE': 100
+}
 
-# print(get_recs(inp))
+print(get_recs(inp))
