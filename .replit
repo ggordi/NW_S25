@@ -2,7 +2,7 @@ modules = ["python-3.11"]
 run = "python ./app/main.py"
 [nix]
 channel = "stable-24_05"
-packages = ["glibcLocales", "run"]
+packages = ["docker", "glibcLocales", "run"]
 
 [deployment]
 run = ["sh", "-c", "run"]

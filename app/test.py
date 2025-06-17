@@ -1,20 +1,13 @@
-import yfinance as yf
+from dotenv import load_dotenv
+import os
+from supabase import create_client
 
-ticker = "MSFT"
+load_dotenv()  # Load from .env file
 
-# info = yf.Ticker(ticker).info
-# msg = {'currentPrice': info['currentPrice'], 'forwardPE': info['forwardPE'], 'trailingPE': info['trailingPE'], 'marketCap': info['marketCap'], 'dividendYield': info['dividendYield'], 'fiftyTwoWeekLow': info['fiftyTwoWeekLow'], 'fiftyTwoWeekHigh': info['fiftyTwoWeekHigh'], 'sector': info['sector'], 'industry': info['industry'], 'grossMargins': info['grossMargins'], 'trailingEps': info['trailingEps'], 'forwardEps': info['forwardEps'], 'beta': info['beta']}
+url = os.environ['SUPABASE_URL']
+key = os.environ['SUPABASE_KEY']
 
-# fields = ['currentPrice', 'forwardPE', 'trailingPE', 'marketCap', 'dividendYield', 'fiftyTwoWeekLow', 'fiftyTwoWeekHigh', 'sector', 'industry', 'grossMargins', 'trailingEps', 'forwardEps', 'beta']
-# msg = dict()
+supabase = create_client(url, key)
+response = supabase.table("users").select("*").execute()
 
-# for f in fields:
-#   msg[f] = info[f]
-
-# print(msg)
-
-hist = yf.Ticker(ticker).history(period="1y", interval="1d") # returns a df
-hist = hist.reset_index()  # preserve the date as a col
-hist['Date'] = hist['Date'].dt.strftime('%Y-%m-%d')  # remove time part
-print(hist.to_json(orient="records"))
-
+print(response.data)

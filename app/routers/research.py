@@ -25,17 +25,19 @@ def get_ticker_info(ticker: str):
   return {"ticker": ticker, "message": msg}
 
 
+# provides a 1-year history of pricing data for the specified asset
 @router.get("/{ticker}/history")
 def get_ticker_history(ticker: str):
   hist = yf.Ticker(ticker).history(period="1y", interval="1d") # returns a df
   hist = hist.reset_index()  # preserve the date as a col
   hist['Date'] = hist['Date'].dt.strftime('%Y-%m-%d')  # remove time part
   time_data = hist.to_json(orient="records")
-  
   return {"ticker": ticker, "message": time_data}
 
 
+# intakes a dictionary of user input with keys: "sector", "marketCapLevel", "growthValueType", "forwardPE",
+# returns a list of 5 recommended stocks 
 @router.post("/recommendations")
 def get_recommendations(user_input: dict):
-  recs = get_recs(user_input)  # calling the knn retrieval function
+  recs = get_recs(user_input)
   return {"message": recs}
