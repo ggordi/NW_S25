@@ -1,12 +1,19 @@
 modules = ["python-3.11"]
-run = "python ./app/main.py"
+run     = "python ./app/main.py"
+
 [nix]
-channel = "stable-24_05"
-packages = ["docker", "glibcLocales", "run"]
+channel  = "stable-24_05"
+packages = ["cacert", "gcc", "glibcLocales", "libffi", "libstdcxx", "libxcrypt", "pkg-config", "sqlite", "xsimd"]
 
 [deployment]
-run = ["sh", "-c", "run"]
+run = ["sh", "-c", "python3 ./app/main.py"]
 
 [[ports]]
-localPort = 8000
+localPort    = 8000
 externalPort = 80
+
+[env]
+LD_LIBRARY_PATH = "/nix/store/xvzz97yk73hw03v5dhhz3j47ggwf1yq1-gcc-13.2.0-lib/lib"
+
+
+#ooooops
