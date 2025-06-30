@@ -3,4 +3,6 @@
 # virtual environment
 /backend/.venv
 
+/backend/__pycache__
+
 /archive/.replit

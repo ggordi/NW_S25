@@ -1,0 +1,32 @@
+<template>
+  <lightning-card title="Stock Research">
+    <div class="slds-p-around_medium">
+
+      <!-- Input field -->
+      <lightning-input
+        label="Ticker Symbol"
+        name="ticker"
+        value={searchTerm}
+        onchange={handleInputChange}>
+      </lightning-input>
+
+      <!-- Search button -->
+      <lightning-button
+        label="Search"
+        variant="brand"
+        class="slds-m-top_small"
+        onclick={handleSearch}>
+      </lightning-button>
+
+      <!-- Rendered API result -->
+      <template if:true={result}>
+        <div class="slds-m-top_medium">
+          <p><strong>Name:</strong> {result.name}</p>
+          <p><strong>Price:</strong> {result.price}</p>
+          <p><strong>Sector:</strong> {result.sector}</p>
+        </div>
+      </template>
+
+    </div>
+  </lightning-card>
+</template>
