@@ -1,2 +1,6 @@
 # environment variables
-.env
+/backend/.env
+# virtual environment
+/backend/.venv
+
+/archive/.replit

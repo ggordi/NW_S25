@@ -1,0 +1,7 @@
+supabase 
+dotenv
+scikit-learn 
+pandas 
+fastapi
+yfinance
+uvicorn
