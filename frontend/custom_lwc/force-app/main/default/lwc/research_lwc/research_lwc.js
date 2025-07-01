@@ -8,15 +8,20 @@ export default class Research_lwc extends LightningElement {
     this.searchTerm = event.target.value;
   }
 
-  handleSearch() {
+  async handleSearch() {
     console.log('Search button clicked');
     console.log('Search term:', this.searchTerm);
 
+    const resp = await fetch(`https://nw-s25.onrender.com/research/${this.searchTerm}`);
+    const json = await resp.json();
+    const data = json.message;
+
     // Placeholder: set dummy result for now
     this.result = {
-      name: 'Example Corp',
-      price: '123.45',
-      sector: 'Technology'
+      name: data.longName,
+      price: data.price,
+      sector: data.sector,
+      pe: data.forwardPE
     };
   }
 }

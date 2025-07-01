@@ -4,7 +4,7 @@
 
       <!-- Input field -->
       <lightning-input
-        label="Ticker Symbol"
+        label="Ticker Symbol CHANGES MADE**"
         name="ticker"
         value={searchTerm}
         onchange={handleInputChange}>
@@ -24,6 +24,7 @@
           <p><strong>Name:</strong> {result.name}</p>
           <p><strong>Price:</strong> {result.price}</p>
           <p><strong>Sector:</strong> {result.sector}</p>
+          <p><strong>Sector:</strong> {result.pe}</p>
         </div>
       </template>
 
