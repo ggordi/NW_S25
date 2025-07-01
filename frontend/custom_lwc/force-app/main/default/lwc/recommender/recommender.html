@@ -1,0 +1,62 @@
+<template>
+  <lightning-card title="📋 Asset Recommendation Tool">
+    <div class="slds-p-around_medium slds-grid slds-grid_vertical slds-gutters">
+
+      <!-- Form Fields -->
+      <lightning-combobox
+        name="sector"
+        label="Sector"
+        placeholder="Select Sector"
+        value={form.sector}
+        options={sectorOptions}
+        onchange={handleChange}>
+      </lightning-combobox>
+
+      <lightning-combobox
+        name="marketCapLevel"
+        label="Market Cap Level"
+        value={form.marketCapLevel}
+        options={marketCapOptions}
+        onchange={handleChange}>
+      </lightning-combobox>
+
+      <lightning-combobox
+        name="growthValueType"
+        label="Growth/Value"
+        value={form.growthValueType}
+        options={growthValueOptions}
+        onchange={handleChange}>
+      </lightning-combobox>
+
+      <lightning-input
+        type="number"
+        step="0.1"
+        name="forwardPE"
+        label="Forward P/E"
+        value={form.forwardPE}
+        onchange={handleChange}>
+      </lightning-input>
+
+      <lightning-button
+        label="Submit"
+        variant="brand"
+        class="slds-m-top_medium"
+        onclick={handleSubmit}>
+      </lightning-button>
+
+      <!-- Render recommendations -->
+      <template if:true={recommendations}>
+        <div class="slds-box slds-theme_shade slds-m-top_medium slds-p-around_medium slds-rounded_large">
+          <p class="slds-text-heading_small">📈 Recommended Tickers:</p>
+          <h1>text</h1>
+          <ul class="slds-list_dotted slds-m-top_x-small">
+            <template for:each={recommendations} for:item="ticker">
+              <li key={ticker}>{ticker}</li>
+            </template>
+          </ul>
+        </div>
+      </template>
+
+    </div>
+  </lightning-card>
+</template>
